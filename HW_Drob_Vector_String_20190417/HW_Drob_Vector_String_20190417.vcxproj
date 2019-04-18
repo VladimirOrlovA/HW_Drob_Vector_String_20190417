@@ -115,6 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="drob_.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="string_.cpp" />
+    <ClCompile Include="vector_.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="drob_.h" />
+    <ClInclude Include="string_.h" />
+    <ClInclude Include="vector_.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="z_Task - HW_String_20190417.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

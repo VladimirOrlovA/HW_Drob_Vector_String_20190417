@@ -1,0 +1,11 @@
+﻿
+
+//http://www.cplusplus.com/reference/string/string/
+	
+ok - string& operator= (const char* s);
+ok - string& operator= (char c);
+int size()const;
+int length()const;
+bool empty()const;
+ok - string& operator+= (const string& str);
+string& operator+= (const char* s);

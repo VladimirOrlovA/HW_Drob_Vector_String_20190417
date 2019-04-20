@@ -42,7 +42,7 @@ string_::string_(const char * s, size_t n)
 	this->length = n;
 }
 
-// Метод - запись в строку n элементов заданным значением - переданный символ
+// Метод - создает строку, состоящую из n символов c
 string_::string_(size_t n, char c)
 {
 	this->str = new char[n + 1];
@@ -125,8 +125,8 @@ string_ & string_::operator+=(const string_ & str)
 	
 	this->length += str.length;
 	char *tmp = new char[this->length + 1];
-	strcpy_s(tmp, length + 1, this->str);
-	strcat_s(tmp, length + 1, str.str);
+	strcpy_s(tmp, this->length + 1, this->str);
+	strcat_s(tmp, this->length + 1, str.str);
 	delete[] this->str;
 	this->str = tmp;
 	return *this;
@@ -134,6 +134,14 @@ string_ & string_::operator+=(const string_ & str)
 
 string_ & string_::operator+=(const char * s)
 {
+	if (this->str == nullptr)
+	{
+		this->str = new char[strlen(s)+1];
+		this->length = strlen(s);
+		strcpy_s(this->str, this->length + 1, s);
+		return *this;
+	}
+
 	this->length += strlen(s);
 	char *tmp = new char[this->length + 1];
 	strcpy_s(tmp, length + 1, this->str);
@@ -161,7 +169,17 @@ const char *string_::getString() const
 // геттер для длины строки
 int string_::getLength() const
 {
-	return length;
+	return this->length;
+}
+
+int string_::getSize() const
+{
+	if (this->str == nullptr)
+		return 0;
+		
+	size_t char_size = sizeof(char); // выясняем размер char в текущей системе
+	int size = (strlen(this->str)+1)*char_size;
+	return size;
 }
 
 // метод append
@@ -201,21 +219,38 @@ bool string_::equal(const char * s) const
 }
 
 // метод puch_back - вставка символа в конец строки
-void string_::push_back(char z)
+void string_::push_back(const char z)
 {
-	length += 1;
-	char *tmp = new char[length + 1];
-	strcpy_s(tmp, length + 1, str);
-	tmp[length - 1] = z;
-	tmp[length] = '\0';
+	if (this->str == nullptr)
+	{
+		this->length = 1;
+		this->str = new char[this->length + 1];
+		str[length-1] = z;
+		str[length] = '\0';
+		return;
+	}
+
+	this->length += 1;
+	char *tmp = new char[this->length + 1];
+	strcpy_s(tmp, this->length + 1, str);
+	tmp[this->length - 1] = z;
+	tmp[this->length] = '\0';
 	delete[] str;
 	str = tmp;
+}
+
+bool string_::empty() const
+{
+	if (this->str == nullptr)
+		return true;
+	return false;
 }
 
 
 // деструктор
 string_::~string_()
 {
+	cout << "destructor" << endl;
 	delete[] this->str;
 	this->length = 0;
 	this->str = nullptr;
@@ -228,7 +263,7 @@ ostream & operator<<(ostream & os, const string_ & c)
 {
 	if (c.str == nullptr)
 	{
-		cout << " is empty \n";
+		cout << "str is empty \n";
 		return os;
 	}
 		os << c.str;

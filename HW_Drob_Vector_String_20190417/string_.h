@@ -16,20 +16,19 @@ public:
 	string_& operator= (const string_ & str);
 	string_& operator= (const char* s);
 	string_& operator= (char c);
-
 	string_& operator+= (const string_& str);
 	string_& operator+= (const char* s);
 
 	void setString(const char*s);
 	const char* getString() const;
 	int getLength() const;
+	int getSize() const;
 	void append(const char*s);
-	
-	
 	void print() const;
 	void clear();
 	bool equal(const char*s) const;
-	void push_back(char z);
+	void push_back(const char z);
+	bool empty()const;
 	
 	~string_();
 	
@@ -39,6 +38,7 @@ public:
 	friend istream& operator>>(istream &is, string_ &c);
 	friend bool operator==(string_ & L, string_ & R);
 	friend bool operator!=(string_ & L, string_ & R);
+
 };
 
 // объ€вление глобальных функций операций над строками

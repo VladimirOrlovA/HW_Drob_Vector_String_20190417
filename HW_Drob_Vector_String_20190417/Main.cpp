@@ -1,10 +1,13 @@
 #include"drob_.h"
 #include"string_.h"
 #include"vector_.h"
+#include<locale>
 
 
 void main()
 {
+	setlocale(LC_ALL, "RUS");
+	
 	/*drob_ dr(3, 4);
 	dr.print();
 
@@ -62,13 +65,29 @@ void main()
 	//s = 's';
 	//cout << s << endl;
 
-	string_ s1; // ("Hello ");
-	string_ s2("World!");
-	char c = 'Y';
-	s1 += s2;
-	//s1 += c;
+	string_ s1 ("Привет"); // длина строки Hello - 5 символов Привет - 6
+	string_ s2(" World!");
 
+	s1 += s2;
+	s1 += " test";
 	cout << s1 << endl;
+		
+	//cout << s1.getSize() << endl;
+	//string_ *pstr = &s1;
+
+	//cout << "Object string_ s1 - " << sizeof(s1) << "\t Object string_ *pstr - " << sizeof(*pstr) << endl;
+
+	//size_t char_size = sizeof(char);
+
+	//cout << "Current char size "<<char_size << endl;
+
+	//cout << s1 << endl;
+	//cout << "Size of string_ s1 -> " << s1.getSize() <<" bytes"<< endl;
+
+	/*if (s1.empty())
+		cout << "\n -= String empty =- \n";
+	else
+		cout << "\n -= String not empty =- \n";*/
 
 	system("pause");
 }

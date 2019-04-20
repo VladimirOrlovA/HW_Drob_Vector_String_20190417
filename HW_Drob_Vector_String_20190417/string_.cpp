@@ -94,9 +94,9 @@ string_ & string_::operator=(const string_ & str)
 // метод - перегрузка оператора присваивания 
 string_ & string_::operator=(const char * s)
 {
-	length = strlen(s);
-	str = new char[length + 1];
-	strcpy_s(str, length + 1, s);
+	this->length = strlen(s);
+	str = new char[this->length + 1];
+	strcpy_s(str, this->length + 1, s);
 	return *this;
 }
 

@@ -71,7 +71,9 @@ void main()
 	s1 += s2;
 	s1 += " test";
 	cout << s1 << endl;
-		
+	
+	s1 = " test 2";
+	cout << s1 << endl;
 	//cout << s1.getSize() << endl;
 	//string_ *pstr = &s1;
 
